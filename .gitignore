@@ -8,3 +8,4 @@ c/stream_triad
 *.lprof
 mprofile_*.dat
 vtune/
+wheels/

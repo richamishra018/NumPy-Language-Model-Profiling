@@ -1,0 +1,52 @@
+{
+  "config": "small",
+  "model": {
+    "d_model": 64,
+    "n_heads": 4,
+    "d_ff": 256,
+    "n_layers": 2,
+    "seq_len": 64,
+    "batch_size": 8,
+    "vocab_size": 54
+  },
+  "tokens_per_step": 520,
+  "reps": 30,
+  "warmup": 3,
+  "python": "3.10.12",
+  "numpy": "2.2.6",
+  "os": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+  "cpu": "x86_64",
+  "median_ms": {
+    "forward": 48.82669999915379,
+    "loss": 1.686350000454695,
+    "backward": 63.94685000032041,
+    "adam": 3.8979000000836095,
+    "train_step": 120.66249999952561,
+    "inference_forward": 48.36824999983946
+  },
+  "min_ms": {
+    "forward": 42.37889999967592,
+    "loss": 1.2055999995936872,
+    "backward": 57.345699999132194,
+    "adam": 3.4324000007472932,
+    "train_step": 107.87410000011732,
+    "inference_forward": 43.35410000021511
+  },
+  "max_ms": {
+    "forward": 67.14869999996154,
+    "loss": 3.4723999997368082,
+    "backward": 83.26709999892046,
+    "adam": 6.535500000609318,
+    "train_step": 158.5030000005645,
+    "inference_forward": 78.71820000036678
+  },
+  "train_tokens_per_sec": 4309.541075330318,
+  "inference_tokens_per_sec": 10750.854124383783,
+  "peak_rss_mb": 82.22265625,
+  "share_of_train_step_pct": {
+    "forward": 40.46551331138154,
+    "loss": 1.397575883527463,
+    "backward": 52.996457060455256,
+    "adam": 3.230415414978916
+  }
+}

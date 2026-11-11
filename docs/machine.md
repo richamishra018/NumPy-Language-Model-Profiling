@@ -16,11 +16,11 @@ Recorded 2026-11-11 (Stage 0.5). Measured inside the Linux environment that runs
 ## OS / software
 - OS: Ubuntu 22.04.5 LTS, kernel 6.8.0 (Microsoft hypervisor guest, full virtualization)
 - Python 3.10.12, NumPy 2.2.6 (bundled scipy-openblas, OpenBLAS 0.3.29, Haswell kernels selected via DYNAMIC_ARCH), matplotlib 3.10.9, psutil 7.2.2
-- Virtualenv: .venv created with system site-packages (PyPI not reachable from this shell, so line_profiler, snakeviz, py-spy, memory_profiler, threadpoolctl and ittapi are NOT yet installed)
+- Virtualenv: .venv created with system site-packages. Extra packages installed offline from wheels/ (PyPI is not reachable from this shell): line_profiler, snakeviz, py-spy, memory_profiler, threadpoolctl, ittapi. line_profiler still needs the `tomli` wheel (Python 3.10 has no tomllib).
 
 ## Power state
-- Power mode: NOT RECORDED (not visible from the guest). Richa to fill in: Windows power mode ______
-- On AC power: NOT RECORDED. Richa to fill in: yes / no ______
+- Power mode: Best performance (when plugged in)
+- On AC power: yes
 
 ## Caveats
 - This is a VM guest (Hyper-V/WSL2-style, "Hypervisor vendor: Microsoft"). Per the guide, hardware counters are normally NOT exposed here, so run VTune (Stage 4) on native Windows, or use Stage 5 tools. Python/C timings from here carry some virtualization overhead; note this when comparing against teammates.

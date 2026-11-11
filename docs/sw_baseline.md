@@ -1,11 +1,11 @@
 # Python / NumPy software baseline (Stage 1)
 
 Measured 2026-11-11 on the machine in [machine.md](machine.md) (Intel i5-3210M, 2 logical CPUs, 3.8 GiB RAM, Linux guest under a Microsoft hypervisor).
-Python 3.10.12, NumPy 2.2.6, BLAS = bundled OpenBLAS 0.3.29 (scipy-openblas), core Sandybridge.
+**Laptop on AC power, Windows power mode "Best performance".** Python 3.10.12, NumPy 2.2.6, BLAS = bundled OpenBLAS 0.3.29 (scipy-openblas), core Sandybridge.
 Unmodified `src/transformer.py`; fixed batch, seed 42; tokens per step = batch_size x (seq_len + 1).
 
 ## Thread setting
-Two runs per config: **1 BLAS thread** (`OPENBLAS_NUM_THREADS=1`, the fair single-core reference; files `py_<cfg>.json`) and **default** (2 threads; files `py_<cfg>_default.json`). Default thread count was confirmed as 2 and the variable as changing it to 1.
+Two runs per config: **1 BLAS thread** (`OPENBLAS_NUM_THREADS=1`, the fair single-core reference; files `py_<cfg>.json`) and **default** (2 threads; files `py_<cfg>_default.json`). Thread counts confirmed with threadpoolctl-style check: default 2, variable gives 1.
 
 ## Commands (repo root; wrapper is `baseline/run_stage1.sh <small|medium|large>`)
     OPENBLAS_NUM_THREADS=1 python baseline/bench.py --config small  --reps 30 --warmup 3 --out baseline/results/py_small.json
@@ -16,34 +16,36 @@ Two runs per config: **1 BLAS thread** (`OPENBLAS_NUM_THREADS=1`, the fair singl
 ## Results, 1 BLAS thread (median ms)
 | Config | Forward | Loss | Backward | Adam | Train step | Train tok/s | Inference fwd | Inference tok/s | Peak RSS |
 |---|---|---|---|---|---|---|---|---|---|
-| small  | 55.9 | 1.5 | 72.9 | 4.9 | 136.7 | 3,804 | 55.4 | 9,389 | 83 MB |
-| medium | 989.5 | 5.9 | 1356.1 | 28.9 | 2382.0 | 866 | 979.4 | 2,107 | 701 MB |
-| large  | 4150.9 | 5.3 | 5614.4 | 155.6 | 9946.1 | 207 | 3983.0 | 516 | 2354 MB |
+| small | 45.4 | 1.3 | 59.0 | 3.7 | 109.8 | 4,734 | 45.8 | 11,364 | 83 MB |
+| medium | 947.0 | 5.4 | 1308.4 | 29.1 | 2294.4 | 900 | 941.2 | 2,193 | 711 MB |
+| large | 3911.5 | 5.4 | 5352.4 | 156.7 | 9463.0 | 217 | 3839.4 | 536 | 2354 MB |
 
 ## Results, default threads (2)
 | Config | Forward | Loss | Backward | Adam | Train step | Train tok/s | Inference fwd | Inference tok/s | Peak RSS |
 |---|---|---|---|---|---|---|---|---|---|
-| small  | 60.6 | 2.0 | 78.8 | 5.8 | 147.7 | 3,522 | 63.8 | 8,155 | 84 MB |
-| medium | 968.9 | 7.7 | 1264.9 | 32.1 | 2298.0 | 898 | 1002.1 | 2,060 | 708 MB |
-| large  | 3925.8 | 5.3 | 4855.4 | 175.3 | 8968.3 | 229 | 3724.9 | 552 | 2352 MB |
+| small | 55.2 | 1.5 | 73.5 | 5.0 | 137.8 | 3,774 | 55.9 | 9,295 | 84 MB |
+| medium | 951.8 | 7.7 | 1236.4 | 32.1 | 2260.8 | 913 | 964.3 | 2,140 | 710 MB |
+| large | 3609.3 | 6.0 | 4215.4 | 157.5 | 7976.8 | 258 | 3404.2 | 604 | 2352 MB |
 
 ## Share of one training step (1 thread)
 | Config | Forward | Loss | Backward | Adam |
 |---|---|---|---|---|
-| small | 40.9% | 1.1% | 53.3% | 3.6% |
-| medium | 41.5% | 0.2% | 56.9% | 1.2% |
-| large | 41.7% | 0.1% | 56.4% | 1.6% |
+| small | 41.4% | 1.2% | 53.7% | 3.4% |
+| medium | 41.3% | 0.2% | 57.0% | 1.3% |
+| large | 41.3% | 0.1% | 56.6% | 1.7% |
 
-Rule of thumb: **forward ~41%, backward ~55%, Adam ~2-4%**, loss ~0-1%.
+Rule of thumb: **forward ~41%, backward ~55%, Adam ~1-4%**, loss ~0-1%.
 
 ## Repeatability (small, 1 thread, 30 reps each)
-Train-step medians: 135.8, 137.9, 137.6 ms (plus the final 136.7 ms run). Spread 1.5%, within the "few percent" requirement. Max/median of train_step was 1.1-1.36 for small, 1.02-1.14 for medium/large, below the 1.5x disturbance threshold.
+Train-step medians: 111.1, 110.3, 110.6, 109.8 ms. Spread 1.1%, within the "few percent" requirement.
+
+## Power-state check (why these numbers replaced the first set)
+The first set was taken without confirming AC power or power mode. After plugging in and selecting Best performance, small train step dropped from 136.7 to 109.8 ms (-20%), so all three configs were rerun. Medium moved 2382 -> 2294 ms (-4%) and large 9946 -> 9463 ms (-5%). Old files are kept in `baseline/results/prev_unverified_power/` and should not be used.
 
 ## Caveats
-- Machine is a VM guest on an older (2012) laptop CPU, so absolute times are 2-3x slower than the guide's worked example (small train step 137 ms vs 58 ms). Ratios match the example.
-- Power mode and AC status are not recorded (see machine.md). Timing runs were not verified as thermally quiet beyond the repeatability check.
+- Machine is a VM guest on an older (2012) laptop CPU, so absolute times are 2-3x slower than the guide's worked example (small train step ~110 ms vs 58 ms). Ratios match the example.
 - Large peak RSS is 2.35 GB of 3.8 GiB RAM with no swap; it fit, but there is little headroom.
-- Default (2-thread) is only 0-10% faster than 1 thread for medium/large and slightly slower for small: with 2 logical CPUs on one physical core, extra threads add little and add overhead for small matrices.
+- Default (2-thread) is slower than 1 thread for small (138 vs 110 ms) and faster for large (7.98 vs 9.46 s); with 2 logical CPUs on one physical core, extra threads only pay off for large matrices.
 
 ## What was surprising
-Time grows slower than work: medium does roughly 30x the arithmetic of small (about 8x per token from layers x d_model^2, times 4x more tokens) but its forward pass takes only ~18x longer (56 -> 990 ms), so small is dominated by per-call and Python overhead and small matrices, and efficiency improves with size (rough estimate, exact FLOPs come in Stage 2). Second, Adam is only 1-4% of a step and the loss under 1%, so almost all training cost is forward/backward matrix math; backward is ~1.35x forward.
+Time grows slower than work: medium does roughly 30x the arithmetic of small (about 8x per token from layers x d_model^2, times 4x more tokens) but its forward pass takes only ~21x longer (45 -> 947 ms), so small is dominated by per-call and Python overhead, and efficiency improves with size (rough estimate; exact FLOPs come in Stage 2). Also, the power state mattered most for small (-20%) and little for medium/large, and Adam is only 1-4% of a step with loss under 1%, so almost all training cost is forward/backward matrix math, with backward ~1.3x forward.
