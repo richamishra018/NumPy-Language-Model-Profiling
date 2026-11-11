@@ -25,7 +25,9 @@ Recorded 2026-11-11 (Stage 0.5). Measured inside the Linux environment that runs
 ## Caveats
 - This is a VM guest (Hyper-V/WSL2-style, "Hypervisor vendor: Microsoft"). Per the guide, hardware counters are normally NOT exposed here, so run VTune (Stage 4) on native Windows, or use Stage 5 tools. Python/C timings from here carry some virtualization overhead; note this when comparing against teammates.
 - Cache sizes, core count and the 2-CPU view come from the guest and may differ from the physical chip.
-- NumPy BLAS picked Haswell kernels (AVX2) even though the CPU reports no AVX2 flag; worth checking during Stage 3.
+- NumPy's BLAS runtime-detects the core as **Sandybridge** (AVX, no FMA), which is right for this CPU. (numpy.show_config() prints "Haswell" only because that is the build machine's target.)
+- NumPy ships its own OpenBLAS 0.3.29 (scipy-openblas, 64-bit ints). The OpenBLAS installed for C in Stage 3 will be a different build; compare the two.
+- BLAS threads: default 2 (= logical CPUs); OPENBLAS_NUM_THREADS=1 gives 1 (confirmed via scipy_openblas_get_num_threads64_, since threadpoolctl is not installed).
 
 ## Smoke test (Stage 0.6)
 `python src/train.py --config small --steps 50 --log_every 25`: 4654 characters, vocab size **54**, loss 5.3385 (step 1) -> 2.7806 (step 25) -> 2.4876 (step 50), wall time ~17 s. checkpoint.pkl and loss_curve.png deleted afterwards.
