@@ -1,0 +1,229 @@
+Timer unit: 0.001 s
+
+Total time: 0.0924853 s
+File: /sessions/rcw-01hs6bbbahalnyicqmkgjsua/mnt/NumPy Language Model Profiling/numpy-lm-profiling/baseline/../src/transformer.py
+Function: softmax at line 16
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+    16                                           def softmax(x, axis=-1):
+    17        30         19.0      0.6     20.5      x = x - np.max(x, axis=axis, keepdims=True)
+    18        30         54.7      1.8     59.1      e = np.exp(x)
+    19        30         18.9      0.6     20.4      return e / e.sum(axis=axis, keepdims=True)
+
+Total time: 0.277432 s
+File: /sessions/rcw-01hs6bbbahalnyicqmkgjsua/mnt/NumPy Language Model Profiling/numpy-lm-profiling/baseline/../src/transformer.py
+Function: gelu at line 22
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+    22                                           def gelu(x):
+    23        20        277.4     13.9    100.0      return 0.5 * x * (1.0 + np.tanh(np.sqrt(2.0 / np.pi) * (x + 0.044715 * x ** 3)))
+
+Total time: 0.318469 s
+File: /sessions/rcw-01hs6bbbahalnyicqmkgjsua/mnt/NumPy Language Model Profiling/numpy-lm-profiling/baseline/../src/transformer.py
+Function: gelu_grad at line 26
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+    26                                           def gelu_grad(x):
+    27        20        152.8      7.6     48.0      tanh_arg = np.sqrt(2.0 / np.pi) * (x + 0.044715 * x ** 3)
+    28        20        112.1      5.6     35.2      tanh_val = np.tanh(tanh_arg)
+    29        20         14.7      0.7      4.6      dtanh = 1.0 - tanh_val ** 2
+    30        20         14.9      0.7      4.7      inner_grad = np.sqrt(2.0 / np.pi) * (1.0 + 3 * 0.044715 * x ** 2)
+    31        20         23.9      1.2      7.5      return 0.5 * (1.0 + tanh_val) + 0.5 * x * dtanh * inner_grad
+
+Total time: 0.0482206 s
+File: /sessions/rcw-01hs6bbbahalnyicqmkgjsua/mnt/NumPy Language Model Profiling/numpy-lm-profiling/baseline/../src/transformer.py
+Function: layer_norm_forward at line 84
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+    84                                           def layer_norm_forward(x, g, b, eps=1e-5):
+    85        50          7.8      0.2     16.1      mean = x.mean(axis=-1, keepdims=True)
+    86        50         16.5      0.3     34.3      var = x.var(axis=-1, keepdims=True)
+    87        50         14.1      0.3     29.2      x_hat = (x - mean) / np.sqrt(var + eps)
+    88        50          9.7      0.2     20.2      out = g * x_hat + b
+    89        50          0.1      0.0      0.2      cache = (x, x_hat, mean, var, g, eps)
+    90        50          0.0      0.0      0.1      return out, cache
+
+Total time: 0.0926593 s
+File: /sessions/rcw-01hs6bbbahalnyicqmkgjsua/mnt/NumPy Language Model Profiling/numpy-lm-profiling/baseline/../src/transformer.py
+Function: layer_norm_backward at line 93
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+    93                                           def layer_norm_backward(dout, cache):
+    94        50          0.3      0.0      0.3      x, x_hat, mean, var, g, eps = cache
+    95        50          0.2      0.0      0.2      N = x.shape[-1]
+    96        50          7.4      0.1      8.0      dg = (dout * x_hat).sum(axis=tuple(range(dout.ndim - 1)))
+    97        50          2.6      0.1      2.8      db = dout.sum(axis=tuple(range(dout.ndim - 1)))
+    98        50          3.6      0.1      3.9      dx_hat = dout * g
+    99        50         24.5      0.5     26.5      dvar = (-0.5 * dx_hat * (x - mean) * (var + eps) ** -1.5).sum(axis=-1, keepdims=True)
+   100        50         25.5      0.5     27.5      dmean = (-dx_hat / np.sqrt(var + eps)).sum(axis=-1, keepdims=True) + dvar * (-2 * (x - mean)).mean(axis=-1, keepdims=True)
+   101        50         28.5      0.6     30.7      dx = dx_hat / np.sqrt(var + eps) + dvar * 2 * (x - mean) / N + dmean / N
+   102        50          0.1      0.0      0.1      return dx, dg, db
+
+Total time: 0.165667 s
+File: /sessions/rcw-01hs6bbbahalnyicqmkgjsua/mnt/NumPy Language Model Profiling/numpy-lm-profiling/baseline/../src/transformer.py
+Function: mha_forward at line 109
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+   109                                           def mha_forward(x, Wq, Wk, Wv, Wo, bq, bk, bv, bo, n_heads):
+   110        20          0.0      0.0      0.0      B, T, D = x.shape
+   111        20          0.0      0.0      0.0      d_head = D // n_heads
+   112        20          0.3      0.0      0.2      scale = 1.0 / np.sqrt(d_head)
+   113                                           
+   114        20         11.1      0.6      6.7      Q = x @ Wq + bq   # (B, T, D)
+   115        20         10.5      0.5      6.3      K = x @ Wk + bk
+   116        20          9.5      0.5      5.8      V = x @ Wv + bv
+   117                                           
+   118                                               # Split heads
+   119        20          0.1      0.0      0.1      def split(t):
+   120                                                   return t.reshape(B, T, n_heads, d_head).transpose(0, 2, 1, 3)
+   121                                           
+   122        20          0.4      0.0      0.3      Q, K, V = split(Q), split(K), split(V)    # (B, H, T, d_head)
+   123                                           
+   124        20         19.2      1.0     11.6      scores = Q @ K.transpose(0, 1, 3, 2) * scale  # (B, H, T, T)
+   125                                           
+   126                                               # Causal mask
+   127        20          3.4      0.2      2.0      mask = np.triu(np.ones((T, T), dtype=bool), k=1)
+   128        20          4.4      0.2      2.7      scores[:, :, mask] = -1e9
+   129                                           
+   130        20         83.8      4.2     50.6      attn = softmax(scores, axis=-1)            # (B, H, T, T)
+   131        20         11.1      0.6      6.7      ctx = attn @ V                             # (B, H, T, d_head)
+   132                                           
+   133                                               # Merge heads
+   134        20          1.7      0.1      1.0      ctx = ctx.transpose(0, 2, 1, 3).reshape(B, T, D)
+   135        20          9.8      0.5      5.9      out = ctx @ Wo + bo
+   136                                           
+   137        20          0.1      0.0      0.0      cache = (x, Q, K, V, attn, ctx, Wq, Wk, Wv, Wo, n_heads, scale)
+   138        20          0.0      0.0      0.0      return out, cache
+
+Total time: 0.156014 s
+File: /sessions/rcw-01hs6bbbahalnyicqmkgjsua/mnt/NumPy Language Model Profiling/numpy-lm-profiling/baseline/../src/transformer.py
+Function: mha_backward at line 141
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+   141                                           def mha_backward(dout, cache):
+   142        20          0.1      0.0      0.0      x, Q, K, V, attn, ctx, Wq, Wk, Wv, Wo, n_heads, scale = cache
+   143        20          0.1      0.0      0.1      B, T, D = x.shape
+   144        20          0.0      0.0      0.0      d_head = D // n_heads
+   145                                           
+   146        20          8.1      0.4      5.2      dctx = dout @ Wo.T
+   147        20          7.9      0.4      5.1      dWo = ctx.reshape(B * T, D).T @ dout.reshape(B * T, D)
+   148        20          1.3      0.1      0.8      dbo = dout.sum(axis=(0, 1))
+   149                                           
+   150                                               # Merge -> split heads
+   151        20          0.2      0.0      0.1      dctx = dctx.reshape(B, T, n_heads, d_head).transpose(0, 2, 1, 3)
+   152                                           
+   153        20         11.3      0.6      7.3      dV = attn.transpose(0, 1, 3, 2) @ dctx
+   154        20         14.7      0.7      9.5      dattn = dctx @ V.transpose(0, 1, 3, 2)
+   155                                           
+   156                                               # Softmax backward
+   157        20         23.4      1.2     15.0      dscores = attn * (dattn - (dattn * attn).sum(axis=-1, keepdims=True))
+   158        20          2.9      0.1      1.8      dscores *= scale
+   159                                           
+   160                                               # Causal mask gradient is zero (already -inf, no grad flows)
+   161        20          3.6      0.2      2.3      mask = np.triu(np.ones((T, T), dtype=bool), k=1)
+   162        20          3.8      0.2      2.4      dscores[:, :, mask] = 0.0
+   163                                           
+   164        20         11.0      0.5      7.0      dQ = dscores @ K
+   165        20         10.8      0.5      6.9      dK = dscores.transpose(0, 1, 3, 2) @ Q
+   166                                           
+   167        20          0.1      0.0      0.1      def merge(t):
+   168                                                   return t.transpose(0, 2, 1, 3).reshape(B, T, D)
+   169                                           
+   170        20          5.0      0.3      3.2      dQ, dK, dV = merge(dQ), merge(dK), merge(dV)
+   171                                           
+   172        20         26.3      1.3     16.9      dx = dQ @ Wq.T + dK @ Wk.T + dV @ Wv.T
+   173        20          8.2      0.4      5.2      dWq = x.reshape(B * T, D).T @ dQ.reshape(B * T, D)
+   174        20          7.1      0.4      4.5      dWk = x.reshape(B * T, D).T @ dK.reshape(B * T, D)
+   175        20          6.9      0.3      4.4      dWv = x.reshape(B * T, D).T @ dV.reshape(B * T, D)
+   176        20          1.5      0.1      0.9      dbq = dQ.sum(axis=(0, 1))
+   177        20          1.0      0.0      0.6      dbk = dK.sum(axis=(0, 1))
+   178        20          0.9      0.0      0.6      dbv = dV.sum(axis=(0, 1))
+   179                                           
+   180        20          0.0      0.0      0.0      return dx, dWq, dWk, dWv, dWo, dbq, dbk, dbv, dbo
+
+Total time: 0.353955 s
+File: /sessions/rcw-01hs6bbbahalnyicqmkgjsua/mnt/NumPy Language Model Profiling/numpy-lm-profiling/baseline/../src/transformer.py
+Function: ff_forward at line 187
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+   187                                           def ff_forward(x, W1, b1, W2, b2):
+   188        20         42.2      2.1     11.9      h = x @ W1 + b1
+   189        20        278.0     13.9     78.5      h_act = gelu(h)
+   190        20         33.7      1.7      9.5      out = h_act @ W2 + b2
+   191        20          0.1      0.0      0.0      cache = (x, h, h_act, W1, W2)
+   192        20          0.0      0.0      0.0      return out, cache
+
+Total time: 0.453221 s
+File: /sessions/rcw-01hs6bbbahalnyicqmkgjsua/mnt/NumPy Language Model Profiling/numpy-lm-profiling/baseline/../src/transformer.py
+Function: ff_backward at line 195
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+   195                                           def ff_backward(dout, cache):
+   196        20          0.1      0.0      0.0      x, h, h_act, W1, W2 = cache
+   197        20          0.1      0.0      0.0      B, T, _ = x.shape
+   198                                           
+   199        20         30.1      1.5      6.6      dh_act = dout @ W2.T
+   200        20         29.8      1.5      6.6      dW2 = h_act.reshape(-1, h_act.shape[-1]).T @ dout.reshape(-1, dout.shape[-1])
+   201        20          1.9      0.1      0.4      db2 = dout.sum(axis=(0, 1))
+   202                                           
+   203        20        324.9     16.2     71.7      dh = dh_act * gelu_grad(h)
+   204        20         33.6      1.7      7.4      dW1 = x.reshape(-1, x.shape[-1]).T @ dh.reshape(-1, dh.shape[-1])
+   205        20          3.5      0.2      0.8      db1 = dh.sum(axis=(0, 1))
+   206        20         29.3      1.5      6.5      dx = dh @ W1.T
+   207                                           
+   208        20          0.1      0.0      0.0      return dx, dW1, db1, dW2, db2
+
+Total time: 0.0190394 s
+File: /sessions/rcw-01hs6bbbahalnyicqmkgjsua/mnt/NumPy Language Model Profiling/numpy-lm-profiling/baseline/../src/transformer.py
+Function: cross_entropy_loss at line 255
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+   255                                           def cross_entropy_loss(logits, token_ids):
+   256        10          0.0      0.0      0.2      B, T, V = logits.shape
+   257        10          0.1      0.0      0.3      targets = token_ids[:, 1:]          # (B, T-1)
+   258        10          0.0      0.0      0.1      preds = logits[:, :-1, :]           # (B, T-1, V)
+   259                                           
+   260        10          9.7      1.0     50.8      probs = softmax(preds, axis=-1)
+   261        10          4.9      0.5     26.0      log_probs = np.log(probs + 1e-9)
+   262                                           
+   263        10          1.6      0.2      8.5      loss = -log_probs[np.arange(B)[:, None], np.arange(T - 1)[None, :], targets].mean()
+   264                                           
+   265        10          0.3      0.0      1.5      dlogits = probs.copy()
+   266        10          0.9      0.1      4.7      dlogits[np.arange(B)[:, None], np.arange(T - 1)[None, :], targets] -= 1.0
+   267        10          0.7      0.1      3.6      dlogits /= (B * (T - 1))
+   268                                           
+   269                                               # Pad back to T
+   270        10          0.4      0.0      1.9      dlogits_full = np.zeros((B, T, V))
+   271        10          0.4      0.0      2.3      dlogits_full[:, :-1, :] = dlogits
+   272                                           
+   273        10          0.0      0.0      0.1      return loss, dlogits_full
+
+Total time: 0.0557993 s
+File: /sessions/rcw-01hs6bbbahalnyicqmkgjsua/mnt/NumPy Language Model Profiling/numpy-lm-profiling/baseline/../src/transformer.py
+Function: step at line 347
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+   347                                               def step(self, params, grads):
+   348        10          0.0      0.0      0.1          self.t += 1
+   349       390          0.7      0.0      1.2          for k in params:
+   350       380          0.4      0.0      0.7              g = grads[k]
+   351       380          0.7      0.0      1.3              if self.wd > 0 and params[k].ndim >= 2:
+   352       150          5.5      0.0      9.8                  g = g + self.wd * params[k]
+   353       380          9.3      0.0     16.6              self.m[k] = self.beta1 * self.m[k] + (1 - self.beta1) * g
+   354       380         10.2      0.0     18.3              self.v[k] = self.beta2 * self.v[k] + (1 - self.beta2) * g ** 2
+   355       380          6.6      0.0     11.8              m_hat = self.m[k] / (1 - self.beta1 ** self.t)
+   356       380          5.8      0.0     10.4              v_hat = self.v[k] / (1 - self.beta2 ** self.t)
+   357       380         16.6      0.0     29.7              params[k] -= self.lr * m_hat / (np.sqrt(v_hat) + self.eps)
+   358        10          0.0      0.0      0.0          return params
+

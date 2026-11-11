@@ -1,0 +1,10 @@
+config=small  positions per step N=520
+  forward  qkv projections               25.56 MFLOP  ( 20.8% of forward)
+  forward  attention scores QK^T          8.65 MFLOP  (  7.0% of forward)
+  forward  attention x V                  8.65 MFLOP  (  7.0% of forward)
+  forward  output projection              8.52 MFLOP  (  6.9% of forward)
+  forward  feed-forward W1               34.08 MFLOP  ( 27.7% of forward)
+  forward  feed-forward W2               34.08 MFLOP  ( 27.7% of forward)
+  forward  vocab projection               3.59 MFLOP  (  2.9% of forward)
+  forward total 123.14 MFLOP | backward (approx 2x) 246.27 MFLOP | train step 369.41 MFLOP
+  achieved: 3.363 GFLOP/s over the whole train step (matmul FLOPs only)

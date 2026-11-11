@@ -1,0 +1,48 @@
+=== sorted by tottime (self time, the one that finds hotspots) ===
+         27079 function calls (26927 primitive calls) in 3.332 seconds
+
+   Ordered by: internal time
+   List reduced from 319 to 15 due to restriction <15>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+       60    0.745    0.012    0.745    0.012 transformer.py:26(gelu_grad)
+       60    0.670    0.011    0.670    0.011 transformer.py:22(gelu)
+       60    0.350    0.006    0.395    0.007 transformer.py:141(mha_backward)
+       60    0.307    0.005    1.066    0.018 transformer.py:195(ff_backward)
+       90    0.187    0.002    0.216    0.002 transformer.py:16(softmax)
+       60    0.181    0.003    0.851    0.014 transformer.py:187(ff_forward)
+      150    0.180    0.001    0.220    0.001 transformer.py:93(layer_norm_backward)
+       60    0.180    0.003    0.386    0.006 transformer.py:109(mha_forward)
+       30    0.119    0.004    0.119    0.004 transformer.py:347(step)
+     1920    0.108    0.000    0.108    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+      150    0.055    0.000    0.108    0.001 transformer.py:84(layer_norm_forward)
+       30    0.037    0.001    1.753    0.058 transformer.py:280(backward)
+       30    0.026    0.001    1.371    0.046 transformer.py:215(forward)
+      150    0.023    0.000    0.035    0.000 _methods.py:151(_var)
+     1260    0.019    0.000    0.019    0.000 {method 'reshape' of 'numpy.ndarray' objects}
+
+
+=== sorted by cumulative (inclusive, the one that shows call structure) ===
+         27079 function calls (26927 primitive calls) in 3.332 seconds
+
+   Ordered by: cumulative time
+   List reduced from 319 to 15 due to restriction <15>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.004    0.004    3.332    3.332 profile_steps.py:15(run)
+       30    0.037    0.001    1.753    0.058 transformer.py:280(backward)
+       30    0.026    0.001    1.371    0.046 transformer.py:215(forward)
+       60    0.307    0.005    1.066    0.018 transformer.py:195(ff_backward)
+       60    0.181    0.003    0.851    0.014 transformer.py:187(ff_forward)
+       60    0.745    0.012    0.745    0.012 transformer.py:26(gelu_grad)
+       60    0.670    0.011    0.670    0.011 transformer.py:22(gelu)
+       60    0.350    0.006    0.395    0.007 transformer.py:141(mha_backward)
+       60    0.180    0.003    0.386    0.006 transformer.py:109(mha_forward)
+      150    0.180    0.001    0.220    0.001 transformer.py:93(layer_norm_backward)
+       90    0.187    0.002    0.216    0.002 transformer.py:16(softmax)
+       30    0.119    0.004    0.119    0.004 transformer.py:347(step)
+     1920    0.108    0.000    0.108    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+      150    0.055    0.000    0.108    0.001 transformer.py:84(layer_norm_forward)
+     1170    0.004    0.000    0.074    0.000 {method 'sum' of 'numpy.ndarray' objects}
+
+
