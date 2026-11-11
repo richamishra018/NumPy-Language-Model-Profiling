@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+c/ref*/
+c/tx
+c/tx_itt
+c/gemm_bench
+c/stream_triad
+*.lprof
+mprofile_*.dat
+vtune/
