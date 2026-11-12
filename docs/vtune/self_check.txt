@@ -1,0 +1,78 @@
+C:\Program Files (x86)\Intel\oneAPI\vtune\2026.6\bin64\\self_check.py:56: SyntaxWarning: "\S" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\S"? A raw string is also an option.
+  GH_CHECK_LSC_SLM_ANALYSIS = "GPU Compute/Media Hotspots (characterization mode: LSC\SLM Accesses)" # Not user visible
+Intel(R) VTune(TM) Profiler Self Check Utility
+Copyright (C) 2009 Intel Corporation. All rights reserved.
+Build Number: 633341
+
+HW event-based analysis (counting mode)...HW event-based analysis (counting mode) (Intel driver)   
+Example of analysis types: Performance Snapshot
+    Collection: Ok
+Running finalization...    Finalization: Ok
+    Report: Ok
+
+Instrumentation based analysis check...Instrumentation based analysis check   
+Example of analysis types: Hotspots and Threading with user-mode sampling
+    Collection: Ok
+Running finalization...    Finalization: Ok
+    Report: Ok
+
+HW event-based analysis check...HW event-based analysis check (Intel driver)   
+Example of analysis types: Hotspots with HW event-based sampling, HPC Performance Characterization, etc.
+    Collection: Ok
+Running finalization...    Finalization: Ok
+    Report: Ok
+
+HW event-based analysis check...HW event-based analysis check (Intel driver)   
+Example of analysis types: Microarchitecture Exploration
+    Collection: Ok
+Running finalization...    Finalization: Ok
+vtune: Warning: The result contains a lot of raw data. Finalization may take a long time to complete.
+
+    Report: Ok
+
+HW event-based analysis with uncore events...HW event-based analysis with uncore events (Intel driver)   
+Example of analysis types: Memory Access
+    Collection: Ok
+Running finalization...    Finalization: Ok
+vtune: Warning: The result contains a lot of raw data. Finalization may take a long time to complete.
+
+    Report: Ok
+
+HW event-based analysis with stacks...HW event-based analysis with stacks (Intel driver)   
+Example of analysis types: Hotspots with HW event-based sampling and call stacks
+    Collection: Ok
+vtune: Warning: Stack flow analysis on this platform is limited to the hardware LBR-based stack type that has a depth limitation.
+Running finalization...    Finalization: Ok
+vtune: Warning: The result contains a lot of raw data. Finalization may take a long time to complete.
+
+    Report: Ok
+
+HW event-based analysis with context switches...HW event-based analysis with context switches (Intel driver)   
+Example of analysis types: Threading with HW event-based sampling
+    Collection: Ok
+Running finalization...    Finalization: Ok
+    Report: Ok
+
+Checking DPC++ application as prerequisite for GPU analyses...Checking DPC++ application as prerequisite for GPU analyses: Fail
+Unable to run DPC++ application on GPU connected to this system. If you are using an Intel GPU and want to verify profiling support for DPC++ applications, check these requirements:
+* Install Intel(R) GPU driver.
+* Install Intel(R) Level Zero GPU runtime.
+* Install Intel(R) oneAPI DPC++ Runtime and set the environment.
+
+The system is ready to be used for performance analysis with Intel VTune Profiler.
+Review warnings in the output above to find product limitations, if any.
+
+The system is ready for the following analyses:
+* Performance Snapshot
+* Hotspots and Threading with user-mode sampling
+* Hotspots with HW event-based sampling, HPC Performance Characterization, etc.
+* Microarchitecture Exploration
+* Memory Access
+* Hotspots with HW event-based sampling and call stacks
+* Threading with HW event-based sampling
+
+The following analyses have failed on the system:
+* GPU Compute/Media Hotspots (characterization mode)
+* GPU Compute/Media Hotspots (source analysis mode)
+
+Log location: C:\Users\poona\AppData\Local\Temp\vtune-tmp-poona\self-checker-2026.11.12_12.05.32\log.txt

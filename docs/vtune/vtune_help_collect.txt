@@ -1,0 +1,296 @@
+Intel(R) VTune(TM) Profiler Command Line Tool
+Copyright (C) 2009 Intel Corporation. All rights reserved.
+
+-c, -collect=<string>         Choose an analysis type.
+
+
+ Perform a data collection of the specified analysis type.
+ See the list of available analysis types below.
+ 
+
+
+Action Options:
+ 
+-allow-multiple-runs | -no-allow-multiple-runs (default)
+                              Enable multiple runs to achieve more precise
+                              results for hardware event-based collections.
+                              When disabled, the collector multiplexes events
+                              running a single collection, which lowers result 
+                              precision.
+-analyze-kvm-guest | -no-analyze-kvm-guest (default)
+                              Enable to analyze KVM guest OS running on the
+                              system. This option is applicable to hardware
+                              event-based analysis types only.
+-analyze-system | -no-analyze-system (default)
+                              Enable to analyze all processes running on the
+                              system. When disabled, only the attached process 
+                              and its children are analyzed. This option is
+                              applicable to hardware event-based analysis types
+                              only.
+-app-working-dir=<string>     Specify a directory where the application will be
+                              run.
+-auto-finalize | -no-auto-finalize
+                              The option is deprecated. Please use
+                              -finalization-mode=none instead. Turn on/off
+                              automatic result finalization after data
+                              collection/import. --no-auto-finalize option also
+                              turns off the summary report (--no-summary).
+-call-stack-mode=user-only | user-plus-one | all
+                              Choose how to show system functions in the stack.
+-cpu-mask=<string>            Specify CPU(s) to collect data on (for example:
+                              2-8,10,12-14). This option is applicable to
+                              hardware event-based analysis types only.
+-custom-collector=<string>    Provide a command line for launching an external 
+                              collection tool. You can later import custom
+                              collection data (time intervals and counters) in 
+                              a CSV format to the VTune Profiler result.
+-data-limit=<integer> (1000)  Limit the amount of raw data to be collected by
+                              setting the maximum possible result size (in MB).
+                              VTune Profiler starts collecting data from the
+                              beginning of the target execution and ends when
+                              the limit for the result size is reached. For
+                              unlimited data size, specify 0.
+-discard-raw-data | -no-discard-raw-data (default)
+                              Discard raw collector data from the result upon
+                              finalization.
+-d, -duration=<string>        Specify a duration for collection (in seconds).
+                              Required for system-wide collection. Can also be 
+                              'unlimited'.
+-finalization-mode=full | fast | deferred | none
+                              Define finalization mode: full - perform full
+                              finalization; fast (default) - reduce loaded
+                              sample count to speed up post-processing;
+                              deferred - calculate only binary checksum for
+                              finalization on another machine; none - skip
+                              finalization.
+-finalization-mode=full | fast | deferred | none (fast)
+                              Finalization may take significant system
+                              resources. For a powerful target system, select
+                              full mode to apply immediately after collection. 
+                              Otherwise, shorten finalization or defer it to
+                              run on another system (compute checksums only).
+-follow-child (default) | -no-follow-child
+                              Collect data on processes launched by the target 
+                              process (recommended for applications launched by
+                              a script).
+-inline-mode=on | off         Choose to show or hide inline functions in the
+                              stack.
+-k, -knob=<string>            Set knob value for selected analysis type as
+                              -knob knobName=knobValue. For a list of knobs
+                              available for an analysis, enter: -help collect
+                              <analysis_type>.
+-kvm-guest-kallsyms=<string>  Specify a local path to the /proc/kallsyms file
+                              copied from the guest OS for proper symbol
+                              resolution.
+-kvm-guest-modules=<string>   Specify a local path to the /proc/modules file
+                              copied from the guest OS for proper symbol
+                              resolution.
+-loop-mode=loop-only | loop-and-function | function-only
+                              Choose to show or hide loops in the stack.
+-mrte-mode=auto | native | mixed | managed (auto)
+                              Select a profiling mode. The Native mode does not
+                              attribute data to managed source. The Mixed mode 
+                              attributes data to managed source where
+                              appropriate. The Managed mode tries to limit
+                              attribution to managed source when available.
+-r, -result-dir=<string> (r@@@{at})
+                              Specify result directory path. The default name
+                              for a result directory is r@@@{at}, where @@@ is 
+                              the incremented number of the result, and {at} is
+                              a two- or three-letter abbreviation for the
+                              analysis type.
+-resume-after=<double>        Specify time (in seconds, with fractions allowed)
+                              to delay data collection after the application
+                              starts. For example, 1.56 is 1 sec 560 msec.
+-return-app-exitcode | -no-return-app-exitcode (default)
+                              Return the target exit code instead of the
+                              command line interface exit code.
+-ring-buffer=<double> (0)     Limit the amount of raw data to be collected by
+                              setting the timer enabling the analysis only for 
+                              the last seconds before the target or collection 
+                              is terminated. For unlimited data size, specify
+                              0.
+-search-dir=<string>          Specify search directories for binary and symbol 
+                              files. When the files are in multiple
+                              directories, use the search-dir option multiple
+                              times so that all the necessary directories are
+                              searched.
+-source-search-dir=<string>   Specify search directories for source files. When
+                              your source files are in multiple directories,
+                              use the source-search-dir option multiple times
+                              so that all the necessary directories are
+                              searched.
+-start-paused                 Start data collection paused.
+-strategy=<string>            Specify details for parent and child processes
+                              analysis.
+                              Format:<process_name1>:<profiling_mode>,<process_
+                              name2>:<profiling_mode>,... Available profiling
+                              mode values are: trace:trace, trace:notrace,
+                              notrace:notrace, notrace:trace. This option is
+                              not applicable to hardware event-based analysis
+                              types.
+-summary (default) | -no-summary
+                              Turn on/off showing the summary report after data
+                              collection/import.
+-target-duration-type=veryshort | short | medium | long (short)
+                              Estimate the application duration time. This
+                              value affects the size of collected data. For
+                              long running targets, sampling interval is
+                              increased to reduce the result size. For hardware
+                              event-based analysis types, the duration estimate
+                              affects a multiplier applied to the configured
+                              Sample after value.
+-target-install-dir=<string>  Specify a path to VTune Profiler on the remote
+                              system. If the default location is used, this
+                              path is automatically supplied.
+-target-pid=<unsigned integer>
+                              Attach collection to a running process specified 
+                              by process ID.
+-target-process=<string>      Attach collection to a running process specified 
+                              by process name.
+-target-system=<string>       Define target system for remote collection.
+                              Supported <string> values:
+                              ssh:user@target - for Linux systems, where <user>
+                              is a user name and <target> is a network name of 
+                              the remote system accessed via SSH (usually IP
+                              address).
+-target-tmp-dir=<string>      Specify a directory on the remote system where
+                              performance results are temporarily stored. By
+                              default, /tmp directory is used.
+
+
+
+Global Options:
+ 
+-q, -quiet                    %QuietHelp: 
+-user-data-dir=<string>       Specify the base directory for result paths
+                              provided by --result-dir option. By default, the 
+                              current working directory is used.
+-v, -verbose                  %VerboseHelp: 
+
+
+
+Examples:
+ 
+
+ 1) Perform the hotspots collection on the given target.
+ 
+    vtune -collect hotspots C:\example.exe
+ 
+ The default naming template for result directories is r@@@{at}, where:
+ @@@ is an increasing numeric sequence automatically assigned by vtune;
+ {at} is an abbreviation of the analysis type.
+ 
+ 2) Collect the results into the 'r001tr' result directory.
+ 
+    vtune -collect threading -r r001tr C:\example.exe
+ 
+ Use '-help collect <analysis type>' for more information about each analysis type.
+ 
+
+Available Analysis Types:
+ 
+ Want to characterize and identify relevant analysis types for your workload?
+
+   performance-snapshot
+      Get a quick snapshot of your application performance and identify next
+      steps for deeper analysis.
+
+
+ Want to find out where your application spends time and optimize your algorithms?
+
+   hotspots
+      Identify the most time consuming functions and lines of source code.
+
+   anomaly-detection
+      Preview feature - should we keep it, change it, or drop it? Send us your 
+      comments: mailto:vtune-profiler-support@intel.com?subject=VTune Profiler:
+      Anomaly Detection - preview feedback. Identify performance anomalies by
+      profiling critical code at the microsecond level. Anomaly Detection uses 
+      Intel Processor Trace technology for fine-grained analysis.
+
+   memory-consumption
+      Analyze memory consumption by your application, its distinct memory
+      objects and their allocation stacks.
+
+
+ Want to see how efficiently your code is using the underlying hardware?
+
+   uarch-exploration
+      Analyze CPU microarchitecture bottlenecks affecting the performance of
+      your application.
+
+   memory-access
+      Measure a set of metrics to identify memory access related issues.
+
+
+ Want to assess the compute efficiency of your multi-threaded application?
+
+   threading
+      Discover how well your application is using parallelism to take advantage
+      of all available CPU cores.
+
+   hpc-performance
+      Analyze performance aspects of compute-intensive applications, including 
+      CPU and GPU utilization. Get information on OpenMP efficiency, memory
+      access, and vectorization.
+
+
+ Want to see how efficiently your code is using I/O?
+
+   io
+      Analyze utilization of IO subsystems, CPU, and processor buses.
+
+
+ Want to explore GPU/NPU usage for your application?
+
+   xpu-offload
+      Examine code execution on CPU, GPU, or NPU device cores. Estimate the
+      benefits of code offload to these devices. Also, identify if your
+      application is host- or device-bound.
+
+   gpu-hotspots
+      Analyze the most time-consuming GPU kernels, characterize GPU utilization
+      based on GPU hardware metrics, identify performance issues caused by
+      memory latency or inefficient kernel algorithms, and analyze GPU
+      instruction frequency per certain instruction types.
+
+
+ Want to explore CPU, GPU and power usage for your application/system?
+
+   system-overview
+      Analyze general behavior of Linux target system and correlate power and
+      performance metrics with IRQ handling.
+
+   graphics-rendering
+      Preview feature. Analyze the CPU/GPU utilization of your code running on 
+      the Xen virtualization platform. Explore GPU utilization per GPU engine
+      and GPU hardware metrics that help understand where performance
+      improvements are possible.
+
+
+ Want to profile applications using Intel Transactional Synchronization Extensions or run on systems with Intel Software Guard Extensions?
+
+   tsx-exploration
+      Analyze Intel Transactional Synchronization Extensions (Intel TSX) usage.
+
+   tsx-hotspots
+      Analyze hotspots inside transactions for systems with the Intel
+      Transactional Synchronization Extensions (Intel TSX) feature enabled.
+
+   sgx-hotspots
+      Analyze hotspots inside security enclaves for systems with the Intel
+      Software Guard Extensions (Intel SGX) feature enabled.
+
+
+ Want to configure collector options?
+
+   gpu-offload
+      GPU Offload analysis is deprecated, use command "vtune -collect
+      xpu-offload" instead.
+
+   npu
+      Analyze how your application uses available neural processing unit (NPU).
+      This analysis type is deprecated, use "vtune -collect xpu-offload -knob
+      profile-npu=true" instead.
+

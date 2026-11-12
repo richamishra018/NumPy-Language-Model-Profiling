@@ -1,0 +1,41 @@
+vtune: Using result path `C:\NumPy Language Model Profiling\NumPy-Language-Model-Profiling\vtune\py_hotspots_2'
+vtune: Executing actions  0 %                                                  vtune: Executing actions  0 % Finalizing results                               vtune: Executing actions 50 % Finalizing results                               vtune: Executing actions 50 % Generating a report                              vtune: Executing actions 50 % Setting data model parameters                    vtune: Executing actions 75 % Setting data model parameters                    vtune: Executing actions 75 % Generating a report                              Elapsed Time: 5.651s
+    CPU Time: 5.238s
+        Effective Time: 5.217s
+        Spin Time: 0.021s
+        Overhead Time: 0s
+    Total Thread Count: 2
+    Paused Time: 0s
+
+Top Hotspots
+Function          Module                                 CPU Time  % of CPU Time(%)
+----------------  -------------------------------------  --------  ----------------
+func@0x1802c0440  _multiarray_umath.cp314-win_amd64.pyd    0.726s             13.9%
+func@0x1802bfae0  _multiarray_umath.cp314-win_amd64.pyd    0.648s             12.4%
+func@0x18005e990  ucrtbase.dll                             0.554s             10.6%
+free_base         ucrtbase.dll                             0.423s              8.1%
+func@0x1802c2b10  _multiarray_umath.cp314-win_amd64.pyd    0.393s              7.5%
+[Others]          N/A                                      2.494s             47.6%
+Effective Physical Core Utilization
+    Effective Logical Core Utilization: 15.2% (1.828 out of 12)
+Collection and Platform Info
+    Application Command Line: python "baseline\profile_steps.py" "--config" "small" "--steps" "100" 
+    Operating System: Microsoft Windows 11
+    Computer Name: Poonam-Book4
+    Result Size: 6.5 MB 
+    Collection start time: 06:09:54 12/11/2026 UTC
+    Collection stop time: 06:10:00 12/11/2026 UTC
+    Collector Type: Event-based counting driver,User-mode sampling and tracing
+    CPU
+        Name: Intel(R) microarchitecture code named Raptorlake-P
+        Frequency: 2.496 GHz
+        Logical CPU Count: 12
+        Cache Allocation Technology
+            Level 2 capability: not detected
+            Level 3 capability: not detected
+
+If you want to skip descriptions of detected performance issues in the report,
+enter: vtune -report summary -report-knob show-issues=false -r <my_result_dir>.
+Alternatively, you may view the report in the csv format: vtune -report
+<report_name> -format=csv.
+vtune: Executing actions 100 % Generating a report                             vtune: Executing actions 100 % done                                            

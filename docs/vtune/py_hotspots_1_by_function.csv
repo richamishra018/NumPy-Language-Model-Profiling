@@ -1,0 +1,48 @@
+vtune: Using result path `C:\NumPy Language Model Profiling\NumPy-Language-Model-Profiling\vtune\py_hotspots_1'
+vtune: Executing actions  0 %                                                  vtune: Executing actions  0 % Finalizing results                               vtune: Executing actions 50 % Finalizing results                               vtune: Executing actions 50 % Generating a report                              vtune: Executing actions 50 % Setting data model parameters                    vtune: Executing actions 75 % Setting data model parameters                    vtune: Executing actions 75 % Generating a report                              Function,CPU Time,CPU Time:Effective Time,CPU Time:Spin Time,CPU Time:Overhead Time,Module,Function (Full),Source File,Start Address
+func@0x1802c0440,0.804669,0.804669,0.0,0.0,_multiarray_umath.cp314-win_amd64.pyd,func@0x1802c0440,[Unknown],0x1802c0440
+func@0x18005e990,0.635060,0.635060,0.0,0.0,ucrtbase.dll,func@0x18005e990,[Unknown],0x18005e990
+free_base,0.501429,0.501429,0.0,0.0,ucrtbase.dll,free_base,[Unknown],0x180012d60
+func@0x28157f260,0.465557,0.465557,0.0,0.0,libscipy_openblas64_-ed4f167a5330424524f45258e7ca2c8d.dll,func@0x28157f260,[Unknown],0x28157f260
+func@0x1802c2b10,0.455377,0.455377,0.0,0.0,_multiarray_umath.cp314-win_amd64.pyd,func@0x1802c2b10,[Unknown],0x1802c2b10
+func@0x1802bfae0,0.378243,0.378243,0.0,0.0,_multiarray_umath.cp314-win_amd64.pyd,func@0x1802bfae0,[Unknown],0x1802bfae0
+func@0x1802c0b9f,0.211926,0.211926,0.0,0.0,_multiarray_umath.cp314-win_amd64.pyd,func@0x1802c0b9f,[Unknown],0x1802c0b9f
+LoadLibraryExW,0.182216,0.182216,0.0,0.0,KERNEL32.DLL,LoadLibraryExW,[Unknown],0x18003c7b0
+func@0x1800edd70,0.167213,0.167213,0.0,0.0,ucrtbase.dll,func@0x1800edd70,[Unknown],0x1800edd70
+exp,0.136906,0.136906,0.0,0.0,ucrtbase.dll,exp,[Unknown],0x1800a81a0
+func@0x2815865b0,0.107006,0.107006,0.0,0.0,libscipy_openblas64_-ed4f167a5330424524f45258e7ca2c8d.dll,func@0x2815865b0,[Unknown],0x2815865b0
+func@0x1802a33d0,0.092489,0.092489,0.0,0.0,_multiarray_umath.cp314-win_amd64.pyd,func@0x1802a33d0,[Unknown],0x1802a33d0
+func@0x1802bff50,0.092162,0.092162,0.0,0.0,_multiarray_umath.cp314-win_amd64.pyd,func@0x1802bff50,[Unknown],0x1802bff50
+func@0x1802c0910,0.091166,0.091166,0.0,0.0,_multiarray_umath.cp314-win_amd64.pyd,func@0x1802c0910,[Unknown],0x1802c0910
+func@0x281586b50,0.090505,0.090505,0.0,0.0,libscipy_openblas64_-ed4f167a5330424524f45258e7ca2c8d.dll,func@0x281586b50,[Unknown],0x281586b50
+WriteFile,0.090201,0.090201,0.0,0.0,KERNELBASE.dll,WriteFile,[Unknown],0x1800b1f30
+memmove,0.076148,0.076148,0.0,0.0,VCRUNTIME140.dll,memmove,[Unknown],0x18001db00
+func@0x281587310,0.075751,0.075751,0.0,0.0,libscipy_openblas64_-ed4f167a5330424524f45258e7ca2c8d.dll,func@0x281587310,[Unknown],0x281587310
+func@0x1802c4300,0.059718,0.059718,0.0,0.0,_multiarray_umath.cp314-win_amd64.pyd,func@0x1802c4300,[Unknown],0x1802c4300
+func@0x180299da0,0.045899,0.045899,0.0,0.0,_multiarray_umath.cp314-win_amd64.pyd,func@0x180299da0,[Unknown],0x180299da0
+malloc_base,0.045366,0.045366,0.0,0.0,ucrtbase.dll,malloc_base,[Unknown],0x1800050a0
+PyObject_Call,0.045030,0.045030,0.0,0.0,python314.dll,PyObject_Call,[Unknown],0x1800c30bc
+func@0x180048700,0.044858,0.044858,0.0,0.0,_multiarray_umath.cp314-win_amd64.pyd,func@0x180048700,[Unknown],0x180048700
+func@0x281586120,0.034068,0.034068,0.0,0.0,libscipy_openblas64_-ed4f167a5330424524f45258e7ca2c8d.dll,func@0x281586120,[Unknown],0x281586120
+PyEval_EvalFrameDefault,0.031531,0.031531,0.0,0.0,python314.dll,PyEval_EvalFrameDefault,[Unknown],0x180043860
+PyNumber_Long,0.015693,0.015693,0.0,0.0,python314.dll,PyNumber_Long,[Unknown],0x180135620
+strchr,0.015586,0.015586,0.0,0.0,VCRUNTIME140.dll,strchr,[Unknown],0x180019bb0
+func@0x1800a074c,0.015371,0.015371,0.0,0.0,ucrtbase.dll,func@0x1800a074c,[Unknown],0x1800a074c
+PyMem_RawMalloc,0.015346,0.015346,0.0,0.0,python314.dll,PyMem_RawMalloc,[Unknown],0x1800b157c
+GetLastError,0.015319,0.015319,0.0,0.0,KERNEL32.DLL,GetLastError,[Unknown],0x180018640
+func@0x1800298e0,0.015294,0.015294,0.0,0.0,_multiarray_umath.cp314-win_amd64.pyd,func@0x1800298e0,[Unknown],0x1800298e0
+func@0x1801a9990,0.015220,0.015220,0.0,0.0,_multiarray_umath.cp314-win_amd64.pyd,func@0x1801a9990,[Unknown],0x1801a9990
+func@0x1802c715f,0.015197,0.015197,0.0,0.0,_multiarray_umath.cp314-win_amd64.pyd,func@0x1802c715f,[Unknown],0x1802c715f
+func@0x18001e580,0.015184,0.015184,0.0,0.0,VCRUNTIME140.dll,func@0x18001e580,[Unknown],0x18001e580
+func@0x1802d1f70,0.015166,0.015166,0.0,0.0,_multiarray_umath.cp314-win_amd64.pyd,func@0x1802d1f70,[Unknown],0x1802d1f70
+func@0x1800b2630,0.015084,0.015084,0.0,0.0,_multiarray_umath.cp314-win_amd64.pyd,func@0x1800b2630,[Unknown],0x1800b2630
+func@0x1800d6280,0.015061,0.015061,0.0,0.0,python314.dll,func@0x1800d6280,[Unknown],0x1800d6280
+Py_Dealloc,0.015019,0.015019,0.0,0.0,python314.dll,Py_Dealloc,[Unknown],0x180040470
+func@0x18006fdb0,0.014985,0.014985,0.0,0.0,python314.dll,func@0x18006fdb0,[Unknown],0x18006fdb0
+func@0x1800768b0,0.014768,0.014768,0.0,0.0,_multiarray_umath.cp314-win_amd64.pyd,func@0x1800768b0,[Unknown],0x1800768b0
+func@0x1800415e0,0.014748,0.014748,0.0,0.0,python314.dll,func@0x1800415e0,[Unknown],0x1800415e0
+func@0x1801a0f4d,0.014702,0.014702,0.0,0.0,_multiarray_umath.cp314-win_amd64.pyd,func@0x1801a0f4d,[Unknown],0x1801a0f4d
+func@0x18005a0f4,0.013663,0.013663,0.0,0.0,python314.dll,func@0x18005a0f4,[Unknown],0x18005a0f4
+WaitForSingleObjectEx,0.006187,0.0,0.006187,0.0,KERNELBASE.dll,WaitForSingleObjectEx,[Unknown],0x18001bdf0
+[pincrt.dll],0.000406,0.000406,0.0,0.0,pincrt.dll,[pincrt.dll],[Unknown],0x0
+vtune: Executing actions 100 % Generating a report                             vtune: Executing actions 100 % done                                            

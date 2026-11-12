@@ -1,0 +1,49 @@
+vtune: Using result path `C:\NumPy Language Model Profiling\NumPy-Language-Model-Profiling\vtune\c_memory_1'
+vtune: Executing actions  0 %                                                  vtune: Executing actions  0 % Finalizing results                               vtune: Executing actions 50 % Finalizing results                               vtune: Executing actions 50 % Generating a report                              vtune: Executing actions 50 % Setting data model parameters                    vtune: Executing actions 75 % Setting data model parameters                    vtune: Executing actions 75 % Generating a report                              Elapsed Time: 13.576s
+    CPU Time: 12.663s
+    Performance-core (P-core)
+        Memory Bound: 13.3% of Pipeline Slots
+            L1 Bound: 4.5% of Clockticks
+            L2 Bound: 0.3% of Clockticks
+            L3 Bound: 1.6% of Clockticks
+            DRAM Bound: 6.3% of Clockticks
+            Store Bound: 5.4% of Clockticks
+    Efficient-core (E-core)
+        Memory Bound: 1.6% of Clockticks
+            L1 Bound: 0.0% of Clockticks
+            L2 Bound: 1.6% of Clockticks
+            L3 Bound: 0.3% of Clockticks
+    Uncore
+        DRAM Bandwidth Bound: 0.0% of Elapsed Time
+    Loads: 51,088,432,607
+    Stores: 7,307,419,216
+    LLC Miss Count: 85,836,036
+    Total Thread Count: 4
+    Paused Time: 0s
+
+Bandwidth Utilization
+Bandwidth Domain  Platform Maximum  Observed Maximum  Average  % of Elapsed Time with High BW Utilization(%)
+----------------  ----------------  ----------------  -------  ---------------------------------------------
+DRAM, GB/sec      55                          14.000    5.261                                           0.0%
+Collection and Platform Info
+    Application Command Line: .\c\tx.exe "bench" "c/ref_medium" "30" 
+    Operating System: Microsoft Windows 11
+    Computer Name: Poonam-Book4
+    Result Size: 81.5 MB 
+    Collection start time: 06:11:24 12/11/2026 UTC
+    Collection stop time: 06:11:38 12/11/2026 UTC
+    Collector Type: Event-based sampling driver
+    CPU
+        Name: Intel(R) microarchitecture code named Raptorlake-P
+        Frequency: 2.496 GHz
+        Logical CPU Count: 12
+        Max DRAM Single-Package Bandwidth: 55.000 GB/s
+        Cache Allocation Technology
+            Level 2 capability: not detected
+            Level 3 capability: not detected
+
+If you want to skip descriptions of detected performance issues in the report,
+enter: vtune -report summary -report-knob show-issues=false -r <my_result_dir>.
+Alternatively, you may view the report in the csv format: vtune -report
+<report_name> -format=csv.
+vtune: Executing actions 100 % Generating a report                             vtune: Executing actions 100 % done                                            

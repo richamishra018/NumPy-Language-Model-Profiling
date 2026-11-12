@@ -1,0 +1,44 @@
+vtune: Using result path `C:\NumPy Language Model Profiling\NumPy-Language-Model-Profiling\vtune\py_itt_1'
+vtune: Executing actions  0 %                                                  vtune: Executing actions  0 % Finalizing results                               vtune: Executing actions 50 % Finalizing results                               vtune: Executing actions 50 % Generating a report                              vtune: Executing actions 50 % Setting data model parameters                    vtune: Executing actions 75 % Setting data model parameters                    vtune: Executing actions 75 % Generating a report                              Elapsed Time: 7.683s
+    CPU Time: 4.911s
+        Effective Time: 4.911s
+        Spin Time: 0s
+        Overhead Time: 0s
+    Total Thread Count: 2
+    Paused Time: 2.599s
+
+Top Hotspots
+Function          Module                                                     CPU Time  % of CPU Time(%)
+----------------  ---------------------------------------------------------  --------  ----------------
+func@0x1802c0440  _multiarray_umath.cp314-win_amd64.pyd                        0.708s             14.4%
+func@0x18005e990  ucrtbase.dll                                                 0.697s             14.2%
+free_base         ucrtbase.dll                                                 0.484s              9.9%
+func@0x1802c2b10  _multiarray_umath.cp314-win_amd64.pyd                        0.450s              9.2%
+func@0x28157f260  libscipy_openblas64_-ed4f167a5330424524f45258e7ca2c8d.dll    0.420s              8.6%
+[Others]          N/A                                                          2.151s             43.8%
+
+Top Tasks
+Task Type  Task Time  Task Count  Average Task Time
+---------  ---------  ----------  -----------------
+backward      2.790s         100             0.028s
+forward       2.079s         100             0.021s
+adam          0.136s         100             0.001s
+loss          0.055s         100             0.001s
+Effective Physical Core Utilization
+    Effective Logical Core Utilization: 14.0% (1.677 out of 12)
+Collection and Platform Info
+    Application Command Line: python "baseline\profile_steps_itt.py" "--config" "small" "--steps" "100" 
+    Operating System: Microsoft Windows 11
+    Computer Name: Poonam-Book4
+    Result Size: 6.3 MB 
+    Collection start time: 06:11:48 12/11/2026 UTC
+    Collection stop time: 06:11:55 12/11/2026 UTC
+    Collector Type: Event-based counting driver,User-mode sampling and tracing
+    CPU
+        Name: Intel(R) microarchitecture code named Raptorlake-P
+        Frequency: 2.496 GHz
+        Logical CPU Count: 12
+        Cache Allocation Technology
+            Level 2 capability: not detected
+            Level 3 capability: not detected
+vtune: Executing actions 100 % Generating a report                             vtune: Executing actions 100 % done                                            

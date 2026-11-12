@@ -1,0 +1,10 @@
+# Exact commands run on Machine B (2026-11-12T11:38:28)
+vtune -collect hotspots -knob sampling-mode=sw -knob enable-stack-collection=true -result-dir vtune\py_hotspots_1 -- python baseline\profile_steps.py --config small --steps 100
+vtune -collect hotspots -knob sampling-mode=hw -knob enable-stack-collection=true -result-dir vtune\c_hotspots_1 -search-dir .\c -source-search-dir .\c -- .\c\tx.exe bench c/ref 300
+vtune -collect uarch-exploration -result-dir vtune\c_uarch_1 -source-search-dir .\c -- .\c\tx.exe bench c/ref 300
+vtune -collect hotspots -knob sampling-mode=sw -knob enable-stack-collection=true -result-dir vtune\py_hotspots_2 -- python baseline\profile_steps.py --config small --steps 100
+vtune -collect hotspots -knob sampling-mode=hw -knob enable-stack-collection=true -result-dir vtune\c_hotspots_2 -search-dir .\c -source-search-dir .\c -- .\c\tx.exe bench c/ref 300
+vtune -collect uarch-exploration -result-dir vtune\c_uarch_2 -source-search-dir .\c -- .\c\tx.exe bench c/ref 300
+vtune -collect memory-access -result-dir vtune\c_memory_1 -source-search-dir .\c -- .\c\tx.exe bench c/ref_medium 30
+vtune -collect hotspots -start-paused -knob sampling-mode=sw -result-dir vtune\py_itt_1 -- python baseline\profile_steps_itt.py --config small --steps 100
+vtune -collect threading -result-dir vtune\c_threading -- .\c\tx.exe bench c/ref_medium 20  (OPENBLAS_NUM_THREADS=4)
