@@ -19,7 +19,7 @@ Why: VTune 2026.6 on this i5-3210M (Ivy Bridge) offers only user-mode sampling; 
 | large (3 reps) | 14,490 | 35.71 / 54.33 s | **65.7%** | 11.4 | 2,465 us |
 
 (The wall time is the whole `tx bench` process, including its harness and start-up, so shares are slightly conservative.)
-Key reading: dgemm is the largest single component at every size and grows with model size, but it runs at only about 11.5 GFLOP/s, about half the 21.5 GFLOP/s ceiling measured by `gemm_bench` on big square matrices. The reason is the ~420 dgemm calls per step, many of them small per-head products (qk and attention-times-V per batch and head), which cannot reach the large-matrix ceiling.
+Key reading: dgemm is the largest single component at every size and grows with model size, but it runs at only about 11.5 GFLOP/s, about half the 21.5 GFLOP/s ceiling measured by `gemm_bench` on big square matrices. The reason is the many dgemm calls per step (about 420 for small, about 1,600 for medium), many of them small per-head products (qk and attention-times-V per batch and head), which cannot reach the large-matrix ceiling.
 
 ## 2. Own-code ranking from gprof (`-O2 -pg -g -fno-inline`, `docs/logs/gprof_noinline.txt`)
 Self-time share of the samples that fall inside `tx` itself (this excludes OpenBLAS and libm):
