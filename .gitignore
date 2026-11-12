@@ -9,3 +9,5 @@ c/stream_triad
 mprofile_*.dat
 vtune/
 wheels/
+c/hello_dgemm
+c/tx_t

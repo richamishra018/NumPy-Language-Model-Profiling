@@ -31,3 +31,9 @@ Recorded 2026-11-11 (Stage 0.5). Measured inside the Linux environment that runs
 
 ## Smoke test (Stage 0.6)
 `python src/train.py --config small --steps 50 --log_every 25`: 4654 characters, vocab size **54**, loss 5.3385 (step 1) -> 2.7806 (step 25) -> 2.4876 (step 50), wall time ~17 s. checkpoint.pkl and loss_curve.png deleted afterwards.
+
+## Measured ceilings (Stage 3)
+- Compute ceiling (OpenBLAS 0.3.15 dgemm, float64): **21.5 GFLOP/s** with 1 thread, **33.2 GFLOP/s** with 2 threads.
+- Memory bandwidth (STREAM triad): **10.7 GB/s**.
+- Ridge point (1 thread): 21.5 / 10.7 = about 2.0 FLOP/byte.
+- Logs: docs/logs/gemm_bench.txt, docs/logs/stream_triad.txt. Details and toolchain caveat (OpenBLAS 0.3.15 from opencv wheel) in c_port.md.

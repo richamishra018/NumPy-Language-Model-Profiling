@@ -1,0 +1,3 @@
+triad best 79.473 ms  ->  10.13 GB/s (24 bytes moved per element)
+triad best 77.385 ms  ->  10.41 GB/s (24 bytes moved per element)
+triad best 75.206 ms  ->  10.71 GB/s (24 bytes moved per element)

@@ -1,0 +1,21 @@
+### small
+OpenBLAS: OpenBLAS 0.3.15 DYNAMIC_ARCH NO_AFFINITY Sandybridge MAX_THREADS=128 | threads: 1 | params: 111222
+forward     median    23.879 ms  min    22.620 ms  max    30.186 ms
+loss        median     0.457 ms  min     0.435 ms  max     1.315 ms
+backward    median    33.084 ms  min    31.121 ms  max    43.065 ms
+adam        median     2.383 ms  min     2.231 ms  max     3.834 ms
+train step  median    60.190 ms  min    58.171 ms  max    74.946 ms
+### medium
+OpenBLAS: OpenBLAS 0.3.15 DYNAMIC_ARCH NO_AFFINITY Sandybridge MAX_THREADS=128 | threads: 1 | params: 823734
+forward     median   594.086 ms  min   585.300 ms  max   626.040 ms
+loss        median     2.264 ms  min     2.180 ms  max     4.113 ms
+backward    median   828.371 ms  min   821.418 ms  max  1273.558 ms
+adam        median    22.432 ms  min    21.025 ms  max    33.682 ms
+train step  median  1452.157 ms  min  1438.442 ms  max  1891.297 ms
+### large
+OpenBLAS: OpenBLAS 0.3.15 DYNAMIC_ARCH NO_AFFINITY Sandybridge MAX_THREADS=128 | threads: 1 | params: 4832566
+forward     median  2605.132 ms  min  2578.006 ms  max  2765.800 ms
+loss        median     2.285 ms  min     2.204 ms  max     2.631 ms
+backward    median  3781.418 ms  min  3725.946 ms  max  6727.065 ms
+adam        median   134.443 ms  min   134.063 ms  max   149.355 ms
+train step  median  6573.976 ms  min  6440.679 ms  max  9633.456 ms

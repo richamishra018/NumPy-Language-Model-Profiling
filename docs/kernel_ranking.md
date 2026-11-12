@@ -28,7 +28,7 @@ Leaf samples: `dgemm_kernel_SANDYBRIDGE` 16.1% (+ `dgemm_beta` 1.2%, so matrix m
 | medium | 2294.4 | 41.3 | 57.0 | gelu_grad 21%, gelu 19%, ff_backward 13% | 5.00 |
 | large | 9463.0 | 41.3 | 56.6 | mha_backward 18%, ff_backward 17%, gelu_grad 15% | 7.20 |
 
-GELU pair (gelu + gelu_grad) share: small 42.5%, medium 39.8%, large 26.3%. Softmax grows with size: 5.6% -> 7.2% -> 10.7% (quadratic attention). mha_backward climbs from 10.5% to 18.3%. **The hottest kernel changes with config**: elementwise GELU at small/medium, attention backward at large. Peak single-thread FP64 on this CPU is about 20 GFLOP/s (2.5 GHz x 8 FLOP/cycle, AVX without FMA), so the Python step achieves 17-36% of peak even counting only matmul FLOPs.
+GELU pair (gelu + gelu_grad) share: small 42.5%, medium 39.8%, large 26.3%. Softmax grows with size: 5.6% -> 7.2% -> 10.7% (quadratic attention). mha_backward climbs from 10.5% to 18.3%. **The hottest kernel changes with config**: elementwise GELU at small/medium, attention backward at large. The measured single-thread dgemm ceiling on this CPU is 21.5 GFLOP/s (Stage 3), so the Python step achieves 16-33% of it even counting only matmul FLOPs.
 
 ## FLOPs (analytic, `flops_*.txt`, N = batch x (seq_len+1))
 | Config | Forward MFLOP | Backward MFLOP | Step MFLOP |

@@ -1,0 +1,30 @@
+### ref
+OpenBLAS: OpenBLAS 0.3.15 DYNAMIC_ARCH NO_AFFINITY Sandybridge MAX_THREADS=128 | threads: 1 | params: 111222
+max|logits - ref| = 1.021e-14
+max|grads  - ref| = 1.554e-15
+step-0 loss = 5.338502020010
+PASS
+step  18  loss 2.835346  numpy 2.835346  diff 1.33e-15
+step  19  loss 2.808915  numpy 2.808915  diff 2.66e-15
+step  20  loss 2.872898  numpy 2.872898  diff 1.33e-15
+worst loss diff = 6.217e-15  PASS
+### ref_medium
+OpenBLAS: OpenBLAS 0.3.15 DYNAMIC_ARCH NO_AFFINITY Sandybridge MAX_THREADS=128 | threads: 1 | params: 823734
+max|logits - ref| = 1.377e-14
+max|grads  - ref| = 1.610e-15
+step-0 loss = 4.851826008686
+PASS
+step  18  loss 2.951278  numpy 2.951278  diff 1.33e-15
+step  19  loss 2.935464  numpy 2.935464  diff 4.00e-15
+step  20  loss 2.943648  numpy 2.943648  diff 0.00e+00
+worst loss diff = 9.770e-15  PASS
+### ref_large
+OpenBLAS: OpenBLAS 0.3.15 DYNAMIC_ARCH NO_AFFINITY Sandybridge MAX_THREADS=128 | threads: 1 | params: 4832566
+max|logits - ref| = 1.332e-14
+max|grads  - ref| = 1.388e-15
+step-0 loss = 4.662279200475
+PASS
+step   4  loss 4.026905  numpy 4.026905  diff 8.88e-16
+step   5  loss 3.898743  numpy 3.898743  diff 4.88e-15
+step   6  loss 3.657039  numpy 3.657039  diff 4.44e-15
+worst loss diff = 4.885e-15  PASS

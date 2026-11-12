@@ -1,0 +1,16 @@
+## 1 thread
+OpenBLAS: OpenBLAS 0.3.15 DYNAMIC_ARCH NO_AFFINITY Sandybridge MAX_THREADS=128 | threads 1
+N=   64  best     0.029 ms     18.20 GFLOP/s
+N=  128  best     0.203 ms     20.66 GFLOP/s
+N=  256  best     1.558 ms     21.53 GFLOP/s
+N=  512  best    12.882 ms     20.84 GFLOP/s
+N= 1024  best   100.788 ms     21.31 GFLOP/s
+N= 2048  best  1022.488 ms     16.80 GFLOP/s
+## default threads
+OpenBLAS: OpenBLAS 0.3.15 DYNAMIC_ARCH NO_AFFINITY Sandybridge MAX_THREADS=128 | threads 2
+N=   64  best     0.056 ms      9.43 GFLOP/s
+N=  128  best     0.138 ms     30.39 GFLOP/s
+N=  256  best     1.011 ms     33.20 GFLOP/s
+N=  512  best     8.356 ms     32.13 GFLOP/s
+N= 1024  best    79.318 ms     27.07 GFLOP/s
+N= 2048  best   763.583 ms     22.50 GFLOP/s

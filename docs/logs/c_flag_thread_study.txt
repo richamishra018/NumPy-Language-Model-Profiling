@@ -1,0 +1,32 @@
+## flag study (small, bench ref 15, 1 thread)
+-O0
+train step  median    73.275 ms  min    72.135 ms  max    92.287 ms
+train step  median    74.126 ms  min    72.497 ms  max    99.836 ms
+-O2
+train step  median    69.893 ms  min    69.497 ms  max    73.827 ms
+train step  median    70.405 ms  min    69.169 ms  max    71.763 ms
+-O3
+train step  median    68.044 ms  min    67.574 ms  max    81.230 ms
+train step  median    67.974 ms  min    67.618 ms  max    82.118 ms
+-O3 -march=native
+train step  median    67.999 ms  min    67.485 ms  max    75.427 ms
+train step  median    67.997 ms  min    67.319 ms  max    70.554 ms
+## thread study C
+threads=1 ref
+threads: 1 
+train step  median    68.269 ms  min    67.045 ms  max    88.962 ms
+threads=1 ref_medium
+threads: 1 
+train step  median  1373.829 ms  min  1335.018 ms  max  1479.135 ms
+threads=2 ref
+threads: 2 
+train step  median    73.006 ms  min    59.250 ms  max   129.077 ms
+threads=2 ref_medium
+threads: 2 
+train step  median  1238.528 ms  min  1184.422 ms  max  1412.900 ms
+threads=4 ref
+threads: 2 
+train step  median    67.881 ms  min    58.721 ms  max   113.545 ms
+threads=4 ref_medium
+threads: 2 
+train step  median  1271.193 ms  min  1215.331 ms  max  1338.800 ms
