@@ -1,0 +1,36 @@
+### ref
+DGEMM_TIMER calls=13959 dgemm_s=1.064 wall_s=2.553 share=41.7% dgemm_GFLOPs=11.46 avg_us=76.2
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  ms/call  ms/call  name    
+ 30.88      0.21     0.21       66     3.18     3.18  gelu_bwd
+ 17.65      0.33     0.12       33     3.64     3.64  adam_step
+ 13.24      0.42     0.09       33     2.73    10.91  backward
+ 10.29      0.49     0.07       33     2.12     5.45  forward
+  5.88      0.53     0.04      429     0.09     0.09  colsum_acc
+  5.88      0.57     0.04      165     0.24     0.24  ln_fwd
+  5.88      0.61     0.04       66     0.61     0.61  gelu_fwd
+  4.41      0.64     0.03      429     0.07     0.07  add_bias
+  2.94      0.66     0.02      165     0.12     0.12  ln_bwd
+  1.47      0.67     0.01       33     0.30     0.30  loss_and_dlogits
+  1.47      0.68     0.01                             _init
+### ref_medium
+DGEMM_TIMER calls=14499 dgemm_s=9.586 wall_s=16.769 share=57.2% dgemm_GFLOPs=10.76 avg_us=661.1
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  ms/call  ms/call  name    
+ 33.33      0.79     0.79       36    21.94    21.94  gelu_bwd
+ 14.35      1.13     0.34        9    37.78    91.11  forward
+ 10.13      1.37     0.24        9    26.67    26.67  adam_step
+  9.28      1.59     0.22       36     6.11     6.11  gelu_fwd
+  9.28      1.81     0.22        9    24.44   142.22  backward
+  6.75      1.97     0.16       81     1.98     1.98  ln_bwd
+  5.91      2.11     0.14       81     1.73     1.73  ln_fwd
+  5.06      2.23     0.12      225     0.53     0.53  add_bias
+  4.64      2.34     0.11      225     0.49     0.49  colsum_acc
+  1.27      2.37     0.03                             _init
+  0.00      2.37     0.00      225     0.00     0.00  linear

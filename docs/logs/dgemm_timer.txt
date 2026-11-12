@@ -1,0 +1,9 @@
+### ref reps 30
+DGEMM_TIMER calls=13959 dgemm_s=1.040 wall_s=2.392 share=43.5% dgemm_GFLOPs=11.72 avg_us=74.5
+train step  median    62.958 ms  min    58.901 ms  max   105.692 ms
+### ref_medium reps 6
+DGEMM_TIMER calls=14499 dgemm_s=8.928 wall_s=15.412 share=57.9% dgemm_GFLOPs=11.55 avg_us=615.8
+train step  median  1500.389 ms  min  1248.867 ms  max  1548.485 ms
+### ref_large reps 3
+DGEMM_TIMER calls=14490 dgemm_s=35.713 wall_s=54.330 share=65.7% dgemm_GFLOPs=11.44 avg_us=2464.7
+train step  median  7642.065 ms  min  6628.748 ms  max  7659.645 ms

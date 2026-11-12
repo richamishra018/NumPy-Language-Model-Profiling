@@ -11,3 +11,8 @@ mprofile_*.dat
 wheels/
 c/hello_dgemm
 c/tx_t
+c/tx_pg
+c/tx_pg2
+c/*.so
+gmon.out
+perf.data*
