@@ -1,0 +1,12 @@
+### medium threads=1
+threads: 1 
+forward     median   597.993 ms  min   515.467 ms  max   755.591 ms
+backward    median   725.690 ms  min   702.834 ms  max   991.738 ms
+train step  median  1379.519 ms  min  1240.083 ms  max  1702.477 ms
+	Maximum resident set size (kbytes): 260412
+### medium threads=2
+threads: 2 
+forward     median   508.206 ms  min   479.944 ms  max  1462.234 ms
+backward    median   656.429 ms  min   633.873 ms  max  6595.028 ms
+train step  median  1187.856 ms  min  1137.908 ms  max  7228.885 ms
+	Maximum resident set size (kbytes): 264592

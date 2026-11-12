@@ -1,0 +1,45 @@
+### small
+kernel                                          calls % of dgemm  GFLOP/s
+feed-forward W1/W2 (bwd)                          264      33.4%    14.04
+QKV + output projection (bwd)                     528      16.8%    13.95
+feed-forward W1/W2 (fwd)                          132      15.7%    14.96
+attention scores/context per head (bwd)          8448      14.1%     8.43
+QKV + output projection (fwd)                     264       9.0%    13.06
+attention scores/context per head (fwd)          4224       7.2%     8.24
+vocab projection (bwd)                             66       3.0%     8.25
+vocab projection (fwd)                             33       0.9%    14.32
+--- fwd+bwd combined ---
+feed-forward W1/W2                                396      49.0%    14.33
+QKV + output projection                           792      25.8%    13.64
+attention scores/context per head               12672      21.3%     8.37
+vocab projection                                   99       3.9%     9.61
+### medium
+kernel                                          calls % of dgemm  GFLOP/s
+feed-forward W1/W2 (bwd)                          144      34.9%    15.60
+QKV + output projection (bwd)                     288      17.5%    15.55
+feed-forward W1/W2 (fwd)                           72      17.0%    16.01
+attention scores/context per head (bwd)          9216      13.0%    10.52
+QKV + output projection (fwd)                     144       9.4%    14.44
+attention scores/context per head (fwd)          4608       7.2%     9.49
+vocab projection (bwd)                             18       0.7%    10.35
+vocab projection (fwd)                              9       0.3%    12.32
+--- fwd+bwd combined ---
+feed-forward W1/W2                                216      51.9%    15.73
+QKV + output projection                           432      26.9%    15.16
+attention scores/context per head               13824      20.2%    10.16
+vocab projection                                   27       1.0%    10.93
+### large
+kernel                                          calls % of dgemm  GFLOP/s
+feed-forward W1/W2 (bwd)                          144      32.0%    14.33
+feed-forward W1/W2 (fwd)                           72      18.1%    12.66
+QKV + output projection (bwd)                     288      15.0%    15.25
+attention scores/context per head (bwd)          9216      12.7%     9.05
+attention scores/context per head (fwd)          4608      11.9%     4.83
+QKV + output projection (fwd)                     144       9.9%    11.54
+vocab projection (bwd)                             12       0.3%     6.21
+vocab projection (fwd)                              6       0.1%     8.20
+--- fwd+bwd combined ---
+feed-forward W1/W2                                216      50.0%    13.73
+QKV + output projection                           432      24.9%    13.78
+attention scores/context per head               13824      24.6%     7.01
+vocab projection                                   18       0.4%     6.76

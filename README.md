@@ -12,8 +12,8 @@ Team: Abrar, Geetha, Richa. Mentor: Sriram. MGIT FPGA / accelerator final projec
 | 2 | cProfile, snakeviz, line_profiler, py-spy, memory, FLOPs | done |
 | 3 | C + OpenBLAS port, validation, benchmarks, flag/thread studies | done |
 | 4 | Intel VTune | not possible on this CPU (Ivy Bridge); done on Machine B (Samsung Galaxy Book4): hardware analyses ran, see `docs/vtune/` and `docs/machineB.md` |
-| 5 | Fallback tools | done for gprof + dgemm timer (perf/valgrind unavailable); teammate VTune results still needed |
-| 6 | Consolidated comparison and kernel ranking | not started |
+| 5 | Fallback tools | done (gprof + dgemm timers on Machine A; perf/valgrind unavailable there) |
+| 6 | Consolidated comparison and kernel ranking | done (see `docs/stage6_comparison.md`, `docs/kernel_ranking.md`); a few Machine B medium/large measurements still owned by Richa |
 | 7 | Checkpoint | not started |
 
 ## Headline results (1 BLAS thread, i5-3210M)
