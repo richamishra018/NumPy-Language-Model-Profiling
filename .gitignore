@@ -7,7 +7,7 @@ c/gemm_bench
 c/stream_triad
 *.lprof
 mprofile_*.dat
-vtune/
+/vtune/
 wheels/
 c/hello_dgemm
 c/tx_t
