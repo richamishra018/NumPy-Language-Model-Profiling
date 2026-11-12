@@ -14,7 +14,7 @@ Team: Abrar, Geetha, Richa. Mentor: Sriram. MGIT FPGA / accelerator final projec
 | 4 | Intel VTune | not possible on this CPU (Ivy Bridge); done on Machine B (Samsung Galaxy Book4): hardware analyses ran, see `docs/vtune/` and `docs/machineB.md` |
 | 5 | Fallback tools | done (gprof + dgemm timers on Machine A; perf/valgrind unavailable there) |
 | 6 | Consolidated comparison and kernel ranking | done (see `docs/stage6_comparison.md`, `docs/kernel_ranking.md`); a few Machine B medium/large measurements still owned by Richa |
-| 7 | Checkpoint | not started |
+| 7 | Checkpoint | worksheet prepared (`docs/STAGE7_WORKSHEET.md`); written answers are Richa's to write |
 
 ## Headline results (1 BLAS thread, i5-3210M)
 | Config | Python step | C step | Speedup |
