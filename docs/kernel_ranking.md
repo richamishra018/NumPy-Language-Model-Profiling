@@ -46,6 +46,6 @@ These count matmul FLOPs only (elementwise work such as GELU, softmax, layer nor
 The top Python hotspots are elementwise (tanh, power, exp), memory-bound with little arithmetic per byte, and fit a streaming datapath well. But a C port (Stage 3) fuses these passes and removes temporaries, so the Python ranking is not the final target; Stage 6 compares before and after.
 
 ## Caveats
-- snakeviz (step 2.2) was not screenshotted: the sandbox shell has no browser. Run `snakeviz baseline/results/cprofile_small.prof` on your laptop and save a screenshot to `docs/`. A bar chart of the same data is in `docs/cprofile_selftime.png`.
+- snakeviz (step 2.2): screenshots of the icicle view for all three configs are in `docs/snakeviz_small.png`, `docs/snakeviz_medium.png` and `docs/snakeviz_large.png` (rendered with snakeviz 2.2.2 from the cProfile `.prof` files, captured with a headless browser). Small shows `gelu_grad` 0.745 s and `gelu` 0.670 s of a 3.33 s run, with backward 1.75 s vs forward 1.37 s. A bar chart of the same data is in `docs/cprofile_selftime.png`.
 - py-spy raw was 200 steps (6,912 samples); the native/speedscope run was 100 steps with some sampling errors.
 - The py-spy and mprof runs executed inside the Linux guest under a hypervisor.
